@@ -182,6 +182,14 @@ setInterval("ceksession()", 1800000);
 					jQuery('#dialog-form').form('clear');
 					reload();
 				}
+				
+				// Request Expert Review Modal
+				function request_expert(){
+					jQuery('#dialog-form').dialog('open').dialog('setTitle','Request Expert Review');
+					$('#frame1').attr('src', '<?php echo base_url('pr/request_expert'); ?>');
+					jQuery('#dialog-form').form('clear');
+					reload();
+				}
 				// END OF CODE BY RIZKY@220301
 
 				function approvedpr() {
@@ -440,21 +448,51 @@ setInterval("ceksession()", 1800000);
 		<div id="p" class="easyui-panel" title="Detail Purchase Request" fit="true" style="width:auto;height:auto;padding:0px;">
 		<div style="float:left;" width="100%" style="border-right: 1px solid #95B8E7">
 
-			<!-- Create PR items preview -->
 			<!-- START OF CODE BY RIZKY@220225 -->
-			<table id="datagrid-rma-detail" class="easyui-datagrid" url="" style="width:1300px;" fit="false" toolbar="#" pagination="false" rownumbers="false" fitColumns="false" singleSelect="true" collapsible="true"
+			<!-- Create PR items preview -->
+			<table id="datagrid-rma-detail" class="easyui-datagrid" url="" style="width:1300px;" fit="false" toolbar="#" pagination="false" rownumbers="true" fitColumns="false" singleSelect="true" collapsible="true"
 			data-options="">
 				<thead>
 					<tr>
-						<th field="rencana_tarik" width="50" align="center">No</th>
 						<th field="tgl_prod_diterima" width="500" align="center">Barang</th>
 						<th field="jml_prod_kembali" width="100" align="center">Qty</th>
 						<th field="no_nc" width="150" align="center">Satuan</th>
 						<th field="jml_prod_ok" width="100" align="center">Due Date</th>
-						<th field="jml_prod_ng" width="100" align="center">Expert Review</th>
-						<th field="jml_prod_ng" width="50" align="center">#</th>
+						<th field="expert_review" width="150" align="center">Expert Review</th>
+						<th field="delete_action" width="50" align="center">#</th>
 					</tr>
 				</thead>
+				
+				<!-- START OF CODE BY RIZKY@220301 -->
+				<!-- Create dummy data -->
+				<tbody>
+					<tr>
+						<td>Coba lagi lah ya</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="request_expert()"></a></td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+					<tr>
+						<td>Contoh sudah di-approve</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><span style="left:0px; color:#54CC1B; font-size: 25px">&#x2022;</span>Andi Akbar</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+					<tr>
+						<td>Kalo ini belum di-approve</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><span style="left:0px; color:#DF0F0F; font-size: 25px">&#x2022;</span>IT</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+				</tbody>
+				<!-- END OF CODE BY RIZKY@220301 -->
+
 			</table>
 			<!-- END OF CODE BY RIZKY@220225 -->
 
@@ -757,16 +795,16 @@ function upload_rma(){
 }
 
 function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#upload-after').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = function (e) {
+			$('#upload-after').attr('src', e.target.result);
+		}
+		
+		reader.readAsDataURL(input.files[0]);
+	}
+}
     
 $("#imgInp").change(function(){
 	readURL(this);

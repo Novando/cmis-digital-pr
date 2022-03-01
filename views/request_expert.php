@@ -39,25 +39,43 @@
 
 <!-- START OF CODE BY RIZKY@220301 -->
 <!-- Approval form -->
-<div style="margin:100px 100px 20px">
+<div style="margin:20px 100px">
   <label>
-    <p>Approval Status   :</p>
-    <select name="approval" id="approval" class="easyui-combobox" style="width:200px;">
-      <option selected>Not Approved</option>
-      <option>Approved</option>
+    <span>No. PR   :</span>
+    <span>0001</span>
+  </label>
+</div>
+<div style="margin:20px 100px">
+  <label>
+    <span>Request to   :</span>
+    <select name="division" id="division" class="easyui-combobox" style="width:200px;">
+      <option selected>N/A</option>
+      <option>IT</option>
+      <option>Maintenance</option>
     </select> 
   </label>
 </div>
-<div style="margin:20px 100px 50px">
+<div style="margin:20px 100px">
+  <label>
+    <span>No. Item   :</span>
+    <span>1</span> 
+  </label>
+</div>
+<div style="margin:20px 100px">
+  <label>
+    <span>Barang   :</span>
+    <span>Coba lagi lah ya</span> 
+  </label>
+</div>
+<div style="margin:20px 100px">
   <label>
     <p>Remark   :</p>
     <textarea name="remark" id="remark" style="width:500px;height:100px"></textarea>
   </label>
 </div>
 
-<!-- Remove, save or cancel PR approval -->
+<!-- save or cancel expert approval -->
 <div id="tb" style="height:auto; padding-left:1000px">
-  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="remove()">Delete</a>
   <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="save()">Save</a>
 	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="plain:true">Cancel</a>
 </div>

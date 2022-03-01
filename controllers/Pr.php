@@ -36,5 +36,10 @@ class pr extends MX_Controller
 	{
 		echo $this->load->view('supervisor_approval');
 	}
+	
+	public function request_expert()
+	{
+		echo $this->load->view('request_expert');
+	}
 
 }

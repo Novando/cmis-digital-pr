@@ -67,15 +67,15 @@
 </div>
 <div id="toolbar-img" style="padding:4px">
 	<label style="padding-right:50px">
-		<p>Image 1 :</p>
+		<span>Image 1 :</span>
 		<input  Name="img1" id="img1" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
 	<label style="padding-right:50px">
-		<p>Image 2 :</p>
+		<span>Image 2 :</span>
 		<input  Name="img2" id="img2" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
 	<label style="padding-right:50px">
-		<p>Image 3 :</p>
+		<span>Image 3 :</span>
 		<input  Name="img3" id="img3" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
 </div>

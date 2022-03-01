@@ -41,17 +41,19 @@
 
 <!-- START OF CODE BY RIZKY@220301 -->
 <!-- Requestor identity form -->
-<div style="margin:100px">
-  <label style="padding-bottom:20px">
-    <span>Approval Status   :</span>
-    <select name="approval" id="approval" class="easyui-combobox" style="width:500px;">
+<div style="margin:100px 100px 20px">
+  <label>
+    <p>Approval Status   :</p>
+    <select name="approval" id="approval" class="easyui-combobox" style="width:200px;">
       <option selected>Not Approved</option>
       <option>Approved</option>
     </select> 
   </label>
+</div>
+<div style="margin:20px 100px 50px">
   <label>
-    <span>Remark   :</span>
-    <input name="remark" id="remark" class="easyui-textbox" style="width:500px;height:100px" />
+    <p>Remark   :</p>
+    <textarea name="remark" id="remark" style="width:500px;height:100px"></textarea>
   </label>
 </div>
 

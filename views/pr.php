@@ -66,6 +66,24 @@ setInterval("ceksession()", 1800000);
 				<tr>
 					<td colspan="2"  height="10" valign="middle" align="left"></td>
 				</tr>
+
+				<!-- Create sort PR by departement -->
+				<!-- START OF CODE BY RIZKY@220225 -->
+				<tr>
+					<td height="20" valign="middle" align="left" style="font-size:12px;">Group By :</td>
+				</tr>
+				<tr>
+					<td width="80" height="20" valign="middle" align="left">
+						<select name="groupByDepartment" id="groupByDepartment" class="easyui-combobox" style="width:150px;">
+							<option>IT</option>
+							<option>Development</option>
+							<option>Sales</option>
+							<option>Maintenance</option>
+							<option>Production</option>
+						</select> 
+					</td>
+				</tr>
+				<!-- END OF CODE BY RIZKY@220225 -->
 	
 				<tr>
 					<td colspan="2"  height="10" valign="middle" align="left"></td>
@@ -314,6 +332,18 @@ setInterval("ceksession()", 1800000);
 	<?php } ?>
 	<?php } ?>
 	
+	<!-- Create legend approval legend -->
+	<!-- START OF CODE BY RIZKY@220225 -->
+	<div style="margin-left:700px">
+		<p>
+			Legend : 
+			<span style="padding-left:25px; color:#FFB800; font-size: 25px">&#x2022;</span>New
+			<span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span>Not Approved
+			<span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span>Approved
+		</p>
+	</div>
+	<!-- END OF CODE BY RIZKY@220225 -->
+	
 </div>
         </div>
 		
@@ -399,6 +429,24 @@ setInterval("ceksession()", 1800000);
 		<div style="height:39%" style="border-style: solid;padding:10px">
 		<div id="p" class="easyui-panel" title="Detail Purchase Request" fit="true" style="width:auto;height:auto;padding:0px;">
 		<div style="float:left;" width="100%" style="border-right: 1px solid #95B8E7">
+
+			<!-- Create PR items preview -->
+			<!-- START OF CODE BY RIZKY@220225 -->
+			<table id="datagrid-rma-detail" class="easyui-datagrid" url="" style="width:1300px;" fit="false" toolbar="#" pagination="false" rownumbers="false" fitColumns="false" singleSelect="true" collapsible="true"
+			data-options="">
+				<thead>
+					<tr>
+						<th field="rencana_tarik" width="50" align="center">No</th>
+						<th field="tgl_prod_diterima" width="500" align="center">Barang</th>
+						<th field="jml_prod_kembali" width="100" align="center">Qty</th>
+						<th field="no_nc" width="150" align="center">Satuan</th>
+						<th field="jml_prod_ok" width="100" align="center">Due Date</th>
+						<th field="jml_prod_ng" width="100" align="center">Expert Review</th>
+						<th field="jml_prod_ng" width="50" align="center">#</th>
+					</tr>
+				</thead>
+			</table>
+			<!-- END OF CODE BY RIZKY@220225 -->
 
 		</div>
 		<div style="height:98%" width="39%" align="right" style="border-left: 1px solid #95B8E7;background:#000">

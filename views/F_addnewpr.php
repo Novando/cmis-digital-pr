@@ -37,6 +37,8 @@
 </style>
 </head>
 
+
+
 <div id="tb" style="height:auto; padding-left:1000px">
         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">Remove</a>
@@ -49,6 +51,8 @@
 					jQuery('#form-jawab-nc').form('load',row);
 				},
 			fitColumns:true">
+
+		
 
 		</table>
 

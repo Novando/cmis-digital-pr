@@ -66,17 +66,17 @@
 	Due Date					: <input  Name="dueDate" id="dueDate" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
 </div>
 <div id="toolbar-img" style="padding:4px">
-	<label>
-		<span>Image 1 :</span>
-		<input  Name="img1" id="img1" size="70" value="" type="file" accept="image/*" />
+	<label style="padding-right:50px">
+		<p>Image 1 :</p>
+		<input  Name="img1" id="img1" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
-	<label>
-		<span>Image 2 :</span>
-		<input  Name="img2" id="img2" size="70" value="" type="file" accept="image/*" />
+	<label style="padding-right:50px">
+		<p>Image 2 :</p>
+		<input  Name="img2" id="img2" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
-	<label>
-		<span>Image 3 :</span>
-		<input  Name="img3" id="img3" size="70" value="" type="file" accept="image/*" />
+	<label style="padding-right:50px">
+		<p>Image 3 :</p>
+		<input  Name="img3" id="img3" style="width:250px" class="easyui-filebox" accept="image/*" />
 	</label>
 </div>
 <!-- END OF CODE BY RIZKY@220225 -->
@@ -212,7 +212,7 @@
 			*/
 		});
 	});
-
+// END OF CODE BY RIZKY@220301
 
 	function pagerFilter(data) {
 		if (typeof data.length == 'number' && typeof data.splice == 'function') {	// is array

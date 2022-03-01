@@ -172,8 +172,18 @@ setInterval("ceksession()", 1800000);
 					$('#frame1').attr('src', '<?php echo base_url('pr/newpr'); ?>');
 					jQuery('#dialog-form').form('clear');
 					reload();
-
 				}
+
+				// START OF CODE BY RIZKY@220301
+				// Supervisor Approval Modal
+				function supervisor_approval(){
+					jQuery('#dialog-form').dialog('open').dialog('setTitle','Supervisor Approval');
+					$('#frame1').attr('src', '<?php echo base_url('pr/supervisor_approval'); ?>');
+					jQuery('#dialog-form').form('clear');
+					reload();
+				}
+				// END OF CODE BY RIZKY@220301
+
 				function approvedpr() {
 					jQuery('#dialog-open-closed-approved').dialog('open').dialog('setTitle','Approved Purchase Request');
 					// var verify = jQuery('#datagrid-rma').datagrid('getSelected');
@@ -307,7 +317,7 @@ setInterval("ceksession()", 1800000);
 	<?php //} ?>
 	
     <?php //if ( $this->permissions->menu($menu_id, 'print') ) { ?>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="approvedpr()">Approved</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="supervisor_approval()">Approval</a>
 	<?php //} ?>
 	
 	<?php //if ( $this->permissions->menu($menu_id, 'updated') ) { ?>

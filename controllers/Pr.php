@@ -22,13 +22,19 @@ class pr extends MX_Controller
 	public function index() {
 		echo $this->load->view('pr');
 	}
+
 	public function Procurement(){
 		echo $this->load->view('approvepr_proc');
 	}
+	
 	public function newpr()
 	{
 		echo $this->load->view('F_addnewpr');
-		
+	}
+	
+	public function supervisor_approval()
+	{
+		echo $this->load->view('supervisor_approval');
 	}
 
 }

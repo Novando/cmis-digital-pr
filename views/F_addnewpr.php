@@ -37,28 +37,91 @@
 </style>
 </head>
 
+<!-- START OF CODE BY RIZKY@220225 -->
+<!-- Requestor identity form -->
+<div id="toolbar-requestor" style="padding:4px">
+	Nama             : <input  Name="nama" id="nama" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+	Departement      : <select name="department" id="department" class="easyui-combobox" style="width:150px;">
+											<option>IT</option>
+											<option>Development</option>
+											<option>Sales</option>
+											<option>Maintenance</option>
+											<option>Production</option>
+										</select> 
+	Divisi					 : <input  Name="divisi" id="divisi" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+	Jenis				     : <select name="jenis" id="jenis" class="easyui-combobox" style="width:150px;">
+											<option>Material</option>
+											<option>Umum</option>
+										</select>
+</div>
 
+<!-- Requestor item form -->
+<div id="toolbar-item" style="padding:4px">
+	Barang / Jasa			: <input  Name="item" id="item" size="50" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+	Qty								: <input  Name="qty" id="qty" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+	Satuan						: <input  Name="satuan" id="satuan" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+</div>
+<div id="toolbar-remark" style="padding:4px">
+	Keterangan Link		: <input  Name="link" id="link" size="70" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+	Due Date					: <input  Name="dueDate" id="dueDate" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
+</div>
+<div id="toolbar-img" style="padding:4px">
+	<label>
+		<span>Image 1 :</span>
+		<input  Name="img1" id="img1" size="70" value="" type="file" accept="image/*" />
+	</label>
+	<label>
+		<span>Image 2 :</span>
+		<input  Name="img2" id="img2" size="70" value="" type="file" accept="image/*" />
+	</label>
+	<label>
+		<span>Image 3 :</span>
+		<input  Name="img3" id="img3" size="70" value="" type="file" accept="image/*" />
+	</label>
+</div>
+<!-- END OF CODE BY RIZKY@220225 -->
 
 <div id="tb" style="height:auto; padding-left:1000px">
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">Remove</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
 </div>
-<table id="datagrin-pr" class="easyui-datagrid" url="<?php echo base_url('sjinternal/get_jsonscan'); ?>" showFooter="true" fit="true" toolbar="#toolbar-add" pagination="true" rownumbers="true" fitColumns="true" singleSelect="true" collapsible="true"
-	data-options="
-			'onDblClickRow': function(index, row, value){
-					jQuery('#dialog-jawab-nc').dialog('open').dialog('setTitle','Keterangan');
-					$('#id_nc_jawab').val() == row.sku ;
-					jQuery('#form-jawab-nc').form('load',row);
-				},
-			fitColumns:true">
 
-		
+<table id="datagrin-pr" class="easyui-datagrid" showFooter="true" rownumbers="true" fitColumns="true" singleSelect="true" collapsible="true">
 
-		</table>
+	<!-- Requested item list -->
+	<!-- START OF CODE BY RIZKY@220225 -->
+	<thead>
+		<tr>
+			<th data-options="field:'idproduk',width:250" sortable="true"  align="left">Barang / Jasa</th>
+			<th data-options="field:'jobid',width:30" sortable="true"  align="left">Qty</th>
+			<th data-options="field:'nmproduk',width:80" sortable="true"  align="left">Satuan</th>
+			<th data-options="field:'qty',width:80" align="center">Keterangan</th>
+			<th data-options="field:'unit',width:50" align="center">Due Date</th>
+			<th data-options="field:'delete',width:30" sortable="true"  align="left"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Kita coba satu barang bagus</td>
+			<td>2</td>
+			<td>Pcs</td>
+			<td>Ini masih statik</td>
+			<td>21/11/2022</td>
+			<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()"></a></td>
+		</tr>
+	</tbody>
+	
+	<!-- END OF CODE BY RIZKY@220225 -->
 
-    </div>
+</table>
 
-	<div id="dialog-jawab-nc" class="easyui-dialog" style="width:400px; height:125px; padding: 4px 6px" modal="true" closed="true">
+<!-- START OF CODE BY RIZKY@220301 -->
+<!-- Add finish or cancel PR creation -->
+<div id="tb" style="height:auto; padding-left:1000px">
+	<a href="javascript:void(0)" id="submit-jawab-finish" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="finish()">Finish</a>
+	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">Cancel</a>
+</div>
+
+<div id="dialog-jawab-nc" class="easyui-dialog" style="width:400px; height:125px; padding: 4px 6px" modal="true" closed="true">
 	<form id="form-jawab-nc" method="post" action="<?php echo base_url('remove_fp/jawab_nc'); ?>" enctype="multipart/form-data">
 			
 			<div class="form-item" style="padding-top:4px">
@@ -72,7 +135,6 @@
 					<td colspan="2">
 						<div id="btn-jawab-nc">
 							<a href="#" type="submit" id="submit-jawab-nc" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:false" style="width:100px">Simpan</a>
-							<a href="#" type="submit" id="submit-jawab-nc-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:false" style="width:100px">batal</a>
 						</div>
 					</td>
 				</tr>
@@ -81,10 +143,12 @@
 </div>
 
 <script>
-	$("#submit-jawab-nc-cancel").on('click', function(){
-	// jQuery.messager.confirm('Confirm','yakin Mau Keluar ?',function(r){
-		$("#dialog-jawab-nc").dialog().dialog("close");
-	// });
+
+	// Confirm cancel PR creation
+	$("#submit-jawab-cancel").on('click', function(){
+		jQuery.messager.confirm('Confirm','yakin Mau Keluar ?',function(r){
+			$("#dialog-form").dialog("close");
+		});
 	});
 
 	$('#kdterima').combobox({
@@ -95,20 +159,29 @@
 			reload();
 		},0);
 	}
-	})	
-	$("#submit-jawab-nc").on('click', function(){
-		var penerima = $('#kdterima').combobox('getValue');
-		var pengirim = $('#kode').combobox('getValue');
-		var xalasan = $('#alasan').val();
-		var row = $('#datagrin-pr').datagrid('getSelected');
-		if (row){
-			xsku = row.sku;
-		}
-		// $('#fak2').textbox('setText', xdelfaktur);
-		jQuery.messager.confirm('Confirm','Keterangan akan disimpan ?',function(r){
-			if (r){
+	});	
 
-				$.ajax({
+	// Confirm finish PR creation
+	$("#submit-jawab-finish").on('click', function(){
+
+		/*
+			////// Original code from Mr. Ali //////
+			var penerima = $('#kdterima').combobox('getValue');
+			var pengirim = $('#kode').combobox('getValue');
+			var xalasan = $('#alasan').val();
+			var row = $('#datagrin-pr').datagrid('getSelected');
+			if (row){
+				xsku = row.sku;
+			}
+			// $('#fak2').textbox('setText', xdelfaktur);
+		*/
+		
+		jQuery.messager.confirm('Confirm','Keterangan akan disimpan ?',function(r){
+			/* 
+				////// Original code form Mr. Ali //////
+				if (r){
+
+					$.ajax({
 						type    : 'POST',
 						url: "<?php echo base_url(); ?>sjinternal/simpan_keterangan",
 						dataType: 'json',
@@ -136,6 +209,7 @@
 						}
 					});
 				}
+			*/
 		});
 	});
 

@@ -27,6 +27,11 @@ class pr extends MX_Controller
 		echo $this->load->view('approvepr_proc');
 	}
 	
+	public function Expert()
+	{
+		echo $this->load->view('expert');
+	}
+	
 	public function newpr()
 	{
 		echo $this->load->view('F_addnewpr');
@@ -41,5 +46,14 @@ class pr extends MX_Controller
 	{
 		echo $this->load->view('request_expert');
 	}
-
+	
+	public function procurement_approval()
+	{
+		echo $this->load->view('procurement_approval');
+	}
+	
+	public function expert_approval()
+	{
+		echo $this->load->view('expert_approval');
+	}
 }

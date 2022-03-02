@@ -352,7 +352,7 @@ setInterval("ceksession()", 1800000);
 	
 	<!-- Create legend approval legend -->
 	<!-- START OF CODE BY RIZKY@220225 -->
-	<div style="margin-left:700px">
+	<div style="margin-left:500px">
 		<p>
 			Legend : 
 			<span style="padding-left:25px; color:#FFB800; font-size: 25px">&#x2022;</span>New
@@ -425,7 +425,6 @@ setInterval("ceksession()", 1800000);
 							fitColumns:true">
 			<thead>
 				<tr>
-					<th field="no_urut" width="50" sortable="false">No</th>
 					<th field="id_rma" width="100" sortable="true" align="center">PR No.</th>
 					<th field="penarikan_qty" width="100" sortable="true" align="center">Approved</th>
 					<th field="cust" width="200" sortable="true" align="center">Approved By</th>
@@ -436,6 +435,53 @@ setInterval("ceksession()", 1800000);
 					<th field="no_po" width="200" align="center">PO Number</th>
 				</tr>
 			</thead>
+
+			<!-- START OF CODE BY RIZKY@220302 -->
+			<!-- PR data sample -->
+			<tbody>
+				<tr>
+					<td>0004</td>
+					<td><span style="padding-left:25px; color:#FFD800; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>Umum</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>0003</td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>Umum</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>0002</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>S1</td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>Umum</td>
+					<td>002</td>
+				</tr>
+				<tr>
+					<td>0001</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>S2</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>Umum</td>
+					<td>002</td>
+				</tr>
+			</tbody>
+			<!-- END OF CODE BY RIZKY@220302 -->
+
 		</table>
 		</div>
 		<!-- TABLE UTAMA EOF -->

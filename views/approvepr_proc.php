@@ -62,271 +62,277 @@ setInterval("ceksession()", 1800000);
 
         <!-- #Left Menu -->
 		<div data-options="region:'west',split:true" title="Look up &amp; Tools" style="width:200px;">
-                <table width="180" border="0" cellspacing="1" cellpadding="2" align="center">
-	                <tr>
-                        <td colspan="2"  height="10" valign="middle" align="left"></td>
-                    </tr>
-					<tr>
-                        <td height="20" valign="middle" align="right" style="font-size:12px;">Date From</td>
-                        <td width="80" height="20" valign="middle" align="right">
-							<input name="txtTglAwal" id="txtTglAwal" class="easyui-datebox" size="9" data-options="validType:'length[10,10]',formatter:myformatter,parser:myparser" value="<?php echo date('Y-m-d', strtotime(date('Y-m-d').' - 30 days')); ?>">
-						</td>
-                    </tr>
-                    <tr>
-                        <td height="20" valign="middle" align="right" style="font-size:12px;">Date To</td>
-                        <td width="80" height="20" valign="middle" align="right">
-							<input name="txtTglAkhir" id="txtTglAkhir" class="easyui-datebox" size="9" data-options="validType:'length[10,10]',formatter:myformatter,parser:myparser" value="<?php echo date('Y-m-d H:i:s') ?>"> 
-						</td>
-                    </tr>
+			<table width="180" border="0" cellspacing="1" cellpadding="2" align="center">
+				<tr>
+					<td colspan="2"  height="10" valign="middle" align="left"></td>
+				</tr>
+
+				<!-- Create sort PR by departement -->
+				<!-- START OF CODE BY RIZKY@220225 -->
+				<tr>
+					<td height="20" valign="middle" align="left" style="font-size:12px;">Division :</td>
+				</tr>
+				<tr>
+					<td width="80" height="20" valign="middle" align="left">
+						<select name="groupByDepartment" id="groupByDepartment" class="easyui-combobox" style="width:150px;">
+							<option>IT</option>
+							<option>Development</option>
+							<option>Sales</option>
+							<option>Maintenance</option>
+							<option>Production</option>
+						</select> 
+					</td>
+				</tr>
+				<!-- END OF CODE BY RIZKY@220225 -->
+	
+				<tr>
+					<td colspan="2"  height="10" valign="middle" align="left"></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" height="25" valign="middle" align="center">
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:false" onclick="ToSearch()">Search</a>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back',plain:false" onclick="DoBack()">Back</a>
+					</td>
+				</tr>
 					
-	                <tr>
-                        <td colspan="2"  height="10" valign="middle" align="left"></td>
-                    </tr>
 
-	                <tr>
-                        <td colspan="2" height="25" valign="middle" align="center">
-                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:false" onclick="ToSearch()">Search</a>
-                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-back',plain:false" onclick="DoBack()">Back</a>
-                        </td>
-                    </tr>
-                  
-
-                  </table>
-                   <!-- JAVASCRIPT DAN FUNCTION -->
-	                <script type="text/javascript">
-	                    function myformatter(date){
-							var y = date.getFullYear();
-							var m = date.getMonth()+1;
-							var d = date.getDate();
-							return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
-						}
-						
-						function myparser(s){
-							if (!s) return new Date();
-							var ss = (s.split('-'));
-							var y = parseInt(ss[0],10);
-							var m = parseInt(ss[1],10);
-							var d = parseInt(ss[2],10);
-							if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
-								return new Date(y,m-1,d);
-							} else {
-								return new Date();
-							}
-						}
-						
-						function DoBack() {
-							document.location.href = "<?php echo base_url() ?>";
-						}
-
-
-						function ToSearch(){
-							var tglawal		= $("#txtTglAwal").datebox('getValue');
-							var tglakhir	= $("#txtTglAkhir").datebox('getValue');
-							var id_rma		= $("#id_rma").textbox('getValue');
-							var cust		= $("#cust").textbox('getValue');
-							var prod_id		= $("#prod_id").textbox('getValue');
-							var surat_jalan	= $("#surat_jalan").textbox('getValue');
-							var rma_terbit	= $("#rma_terbit").textbox('getValue');
-							
-							if ( tglawal == "" ) {
-										jQuery.messager.show({
-												title: 'Peringatan',
-												msg: "Isi tanggal dengan lengkap !!"
-											});
-							} else if ( tglakhir == "" ) {
-										jQuery.messager.show({
-												title: 'Peringatan',
-												msg: "Isi tanggal dengan lengkap !!"
-											});
-							} else {
-									$('#datagrid-rma').datagrid('load',{
-										id_rma		: id_rma,
-										tglawal		: tglawal,
-										tglakhir	: tglakhir,
-										cust		: cust,
-										prod_id		: prod_id,
-										surat_jalan	: surat_jalan,
-										rma_terbit	: rma_terbit,
-									});
-							}
-						}
-
-	                </script>
-<script>
-function printout(){
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if(row){
-		var urlID = row.id_rma;
-		jQuery('#print').attr('src','<?php echo base_url() ?>rma/form_rma/' + urlID);
-		jQuery('#dialog-print-rma').dialog('open').dialog('setTitle','Preview');	
-	}
-}
-function addnew(){
-    	jQuery('#dialog-form').dialog('open').dialog('setTitle','Scan Surat Jalan Internal');
-		$('#frame1').attr('src', '<?php echo base_url('pr/newpr'); ?>');
-		jQuery('#dialog-form').form('clear');
-		reload();
-
-}
-function approvedpr() {
-    jQuery('#dialog-open-closed-approved').dialog('open').dialog('setTitle','Approved By Procurement');
-	// var verify = jQuery('#datagrid-rma').datagrid('getSelected');
-    // if (verify){
-    //     alert("Cek 2");
-		
-	// }
-	
-}
-	
-function verify() {
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if(row){
-		document.location.href = "<?php echo base_url('rma/rma_verify') ?>/" + row.id_rma;
-	}
-}
-
-function conf_log(){
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if ( row.jml_prod_kembali != '' ) {
-	var urlID = row.id_rma;
-		if (row){
-		jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
-			if (r){
-				jQuery.post('<?php echo base_url('rma/status_log'); ?>/',{id:urlID},function(result){
-					if (result.success){
-						jQuery('#datagrid-rma').datagrid('reload');
-					} else {
-						jQuery.messager.show({
-							title: 'Error',
-							msg: result.msg
-						});
-					}
-				},'json');
-			}
-		});
-		}
-	} else {
-		jQuery.messager.show({
-			title: 'Error',
-			msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
-		});
-	}
-								
-}
-
-function conf_qa(){
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if ( row.no_nc != '' && row.jml_prod_ok != '' && row.jml_prod_ng != '' && row.laporan_pemusnah != '' ) {
-	var urlID = row.id_rma;
-		if (row){
-			jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
-			if (r){
-				jQuery.post('<?php echo base_url('rma/status_qa'); ?>/',{id:urlID},function(result){
-					if (result.success){
-						jQuery('#datagrid-rma').datagrid('reload');
-					} else {
-						jQuery.messager.show({
-							title: 'Error',
-							msg: result.msg
-						});
-					}
-				},'json');
-			}
-			});
-		}						
-	} else {
-		jQuery.messager.show({
-			title: 'Error',
-			msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
-		});
-	}						
-}
-
-function conf_mkt(){
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if ( row.no_so_pengganti != '' && row.jml_cetak != '' && row.surat_jalan_ng2 != '' && row.note_penggantian != '' ) {
-	var urlID = row.id_rma;
-		if (row){
-		jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
-			if (r){
-				jQuery.post('<?php echo base_url('rma/status_mkt'); ?>/',{id:urlID},function(result){
-					if (result.success){
-						jQuery('#datagrid-rma').datagrid('reload');
-					} else {
-						jQuery.messager.show({
-							title: 'Error',
-							msg: result.msg
-						});
-					}
-				},'json');
-			}
-		});
-		}
-	} else {
-		jQuery.messager.show({
-			title: 'Error',
-			msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
-		});
-	}
-}
-
-function delete_rma(){
-	var row = jQuery('#datagrid-rma').datagrid('getSelected');
-	if (row){
-		var urlID = row.id_rma; //.split('/').join('_');
-		jQuery.messager.confirm('Confirm','Are you sure you want to remove?',function(r){
-		if (r){
-			jQuery.post('<?php echo base_url('rma/delete_rma'); ?>/',{id:urlID},function(result){
-				if (result.success){
-					jQuery('#datagrid-rma').datagrid('reload');
-				} else {
-					jQuery.messager.show({
-						title: 'Error',
-						msg: result.msg
-					});
+			</table>
+				<!-- JAVASCRIPT DAN FUNCTION -->
+			<script type="text/javascript">
+				function myformatter(date){
+					var y = date.getFullYear();
+					var m = date.getMonth()+1;
+					var d = date.getDate();
+					return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
 				}
-			},'json');
-		}
-		});
-								
-	}
-}
+				
+				function myparser(s){
+					if (!s) return new Date();
+					var ss = (s.split('-'));
+					var y = parseInt(ss[0],10);
+					var m = parseInt(ss[1],10);
+					var d = parseInt(ss[2],10);
+					if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+						return new Date(y,m-1,d);
+					} else {
+						return new Date();
+					}
+				}
+				
+				function DoBack() {
+					document.location.href = "<?php echo base_url() ?>";
+				}
 
-</script>
+				function ToSearch(){
+					var tglawal		= $("#txtTglAwal").datebox('getValue');
+					var tglakhir	= $("#txtTglAkhir").datebox('getValue');
+					var id_rma		= $("#id_rma").textbox('getValue');
+					var cust		= $("#cust").textbox('getValue');
+					var prod_id		= $("#prod_id").textbox('getValue');
+					var surat_jalan	= $("#surat_jalan").textbox('getValue');
+					var rma_terbit	= $("#rma_terbit").textbox('getValue');
+					
+					if ( tglawal == "" ) {
+						jQuery.messager.show({
+							title: 'Peringatan',
+							msg: "Isi tanggal dengan lengkap !!"
+						});
+					} else if ( tglakhir == "" ) {
+						jQuery.messager.show({
+							title: 'Peringatan',
+							msg: "Isi tanggal dengan lengkap !!"
+						});
+					} else {
+						$('#datagrid-rma').datagrid('load',{
+							id_rma		: id_rma,
+							tglawal		: tglawal,
+							tglakhir	: tglakhir,
+							cust		: cust,
+							prod_id		: prod_id,
+							surat_jalan	: surat_jalan,
+							rma_terbit	: rma_terbit,
+						});
+					}
+				}
 
-<div id="toolbar-rma">
-	<?php if ( $this->permissions->menu($menu_id, 'created') ) { ?>
-		<a href="<?php echo base_url('rma/rma_form') ?>" class="easyui-linkbutton" iconCls="icon-add" plain="true">Add</a>
-	<?php } ?>
+			</script>
+			<script>
+				function printout(){
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if(row){
+						var urlID = row.id_rma;
+						jQuery('#print').attr('src','<?php echo base_url() ?>rma/form_rma/' + urlID);
+						jQuery('#dialog-print-rma').dialog('open').dialog('setTitle','Preview');	
+					}
+				}
+
+				function addnew(){
+					jQuery('#dialog-form').dialog('open').dialog('setTitle','Input PR');
+					$('#frame1').attr('src', '<?php echo base_url('pr/newpr'); ?>');
+					jQuery('#dialog-form').form('clear');
+					reload();
+				}
+
+				// START OF CODE BY RIZKY@220301
+				// Procurement Approval Modal
+				function procurement_approval(){
+					jQuery('#dialog-form').dialog('open').dialog('setTitle','Procurement Approval');
+					$('#frame1').attr('src', '<?php echo base_url('pr/procurement_approval'); ?>');
+					jQuery('#dialog-form').form('clear');
+					reload();
+				}
+				
+				// Request Expert Review Modal
+				function request_expert(){
+					jQuery('#dialog-form').dialog('open').dialog('setTitle','Request Expert Review');
+					$('#frame1').attr('src', '<?php echo base_url('pr/request_expert'); ?>');
+					jQuery('#dialog-form').form('clear');
+					reload();
+				}
+				// END OF CODE BY RIZKY@220301
+
+				function approvedpr() {
+					jQuery('#dialog-open-closed-approved').dialog('open').dialog('setTitle','Approved Purchase Request');
+					// var verify = jQuery('#datagrid-rma').datagrid('getSelected');
+					// if (verify){
+						// alert("Cek 2");
+					// }
+				}
+					
+				function verify() {
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if(row){
+						document.location.href = "<?php echo base_url('rma/rma_verify') ?>/" + row.id_rma;
+					}
+				}
+
+				function conf_log(){
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if ( row.jml_prod_kembali != '' ) {
+						var urlID = row.id_rma;
+						if (row){
+							jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
+								if (r){
+									jQuery.post('<?php echo base_url('rma/status_log'); ?>/',{id:urlID},function(result){
+										if (result.success){
+											jQuery('#datagrid-rma').datagrid('reload');
+										} else {
+											jQuery.messager.show({
+												title: 'Error',
+												msg: result.msg
+											});
+										}
+									},'json');
+								}
+							});
+						}
+					} else {
+						jQuery.messager.show({
+							title: 'Error',
+							msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
+						});
+					}							
+				}
+
+				function conf_qa(){
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if ( row.no_nc != '' && row.jml_prod_ok != '' && row.jml_prod_ng != '' && row.laporan_pemusnah != '' ) {
+						var urlID = row.id_rma;
+						if (row){
+							jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
+							if (r){
+								jQuery.post('<?php echo base_url('rma/status_qa'); ?>/',{id:urlID},function(result){
+									if (result.success){
+										jQuery('#datagrid-rma').datagrid('reload');
+									} else {
+										jQuery.messager.show({
+											title: 'Error',
+											msg: result.msg
+										});
+									}
+								},'json');
+							}
+							});
+						}						
+					} else {
+						jQuery.messager.show({
+							title: 'Error',
+							msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
+						});
+					}						
+				}
+
+				function conf_mkt(){
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if ( row.no_so_pengganti != '' && row.jml_cetak != '' && row.surat_jalan_ng2 != '' && row.note_penggantian != '' ) {
+						var urlID = row.id_rma;
+						if (row){
+						jQuery.messager.confirm('Confirm','Anda melakukan konfirmasi pada dokumen RMA',function(r){
+							if (r){
+								jQuery.post('<?php echo base_url('rma/status_mkt'); ?>/',{id:urlID},function(result){
+									if (result.success){
+										jQuery('#datagrid-rma').datagrid('reload');
+									} else {
+										jQuery.messager.show({
+											title: 'Error',
+											msg: result.msg
+										});
+									}
+								},'json');
+							}
+						});
+						}
+					} else {
+						jQuery.messager.show({
+							title: 'Error',
+							msg: 'Mohon untuk mengisi RMA sebelum Konfirmasi'
+						});
+					}
+				}
+
+				function delete_rma(){
+					var row = jQuery('#datagrid-rma').datagrid('getSelected');
+					if (row){
+						var urlID = row.id_rma; //.split('/').join('_');
+						jQuery.messager.confirm('Confirm','Are you sure you want to remove?',function(r){
+							if (r){
+								jQuery.post('<?php echo base_url('rma/delete_rma'); ?>/',{id:urlID},function(result){
+									if (result.success){
+										jQuery('#datagrid-rma').datagrid('reload');
+									} else {
+										jQuery.messager.show({
+											title: 'Error',
+											msg: result.msg
+										});
+									}
+								},'json');
+							}
+						});						
+					}
+				}
+
+			</script>
+
+<div id="toolbar-rma" style="display: flex">
 	
-	
-	<?php //if ( $this->permissions->menu($menu_id, 'print') ) { ?>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addnew()">Input No PO</a>
-	<?php //} ?>
-	
-    <?php //if ( $this->permissions->menu($menu_id, 'print') ) { ?>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="approvedpr()">Approved</a>
-	<?php //} ?>
-	
-	
-	<?php if ( $this->permissions->menu($menu_id, 'verified') ) { ?>
-	<?php if ( $this->uri->segment(2) == 'rma_mkt' ) { ?>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="conf_mkt()">Confirm</a>
-	<?php } ?>
-	<?php } ?>
-	
-	<?php if ( $this->permissions->menu($menu_id, 'deleted') ) { ?>
-	<?php if ( $this->uri->segment(2) == 'rma_mkt' ) { ?>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="delete_rma()">Delete</a>
-	<?php } ?>
-	<?php } ?>
+	<!-- Create legend approval legend -->
+	<!-- START OF CODE BY RIZKY@220225 -->
+	<div style="margin-left:700px">
+		<p>
+			Legend : 
+			<span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span>Not Approved
+			<span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span>Approved
+		</p>
+	</div>
+	<!-- END OF CODE BY RIZKY@220225 -->
 	
 </div>
         </div>
 		
         
         <!-- #Body -->
-        <div data-options="region:'center',title:'Approved Purchase Request By Procurement '" style="background-color:#D7E4F2;">
+        <div data-options="region:'center',title:'Procurement Approval'" style="background-color:#D7E4F2;">
 		<!-- TABLE UTAMA -->
 		<div style="height:60%" bgcolor="#3E6DB9">
 		<table id="datagrid-rma" class="easyui-datagrid" url="<?php echo base_url('rma/getJson'); ?>" fit="true" toolbar="#toolbar-rma" pagination="true" rownumbers="true" fitColumns="false" singleSelect="true" collapsible="true"
@@ -384,21 +390,63 @@ function delete_rma(){
 							fitColumns:true">
 			<thead>
 				<tr>
-					<th field="id_rma" width="50" sortable="true">PR No.</th>
-					<th field="report_date" width="80" sortable="true">Date</th>
-                    <th field="penarikan_qty" width="60" sortable="true" align="center">Approved</th>
-					<th field="cust" width="90" sortable="true" align="center">Approved By</th>
-					<th field="alasan_ng" width="500" sortable="true">Alasan Tidak Approve</th>
-
-                    <th field="status_log" width="100" sortable="true" align="center">Procurement</th>
-					<th field="status_qa" width="60" sortable="true" align="center">Finance</th>
-                    <th field="surat_jalan" width="70" align="center">Jenis</th>
-                    <th field="no_po" width="100">PO Number</th>
-					<th field="no_so" width="60" align="center">Date</th>
-					<th field="rma_terbit" width="60" align="center">Due Date</th>
-					
+					<th field="id_rma" width="100" sortable="true" align="center">PR No.</th>
+					<th field="penarikan_qty" width="100" sortable="true" align="center">Approved</th>
+					<th field="cust" width="200" sortable="true" align="center">Approved By</th>
+					<th field="surat_jalan" width="100" align="center">Jenis</th>
+					<th field="status_log" width="100" sortable="true" align="center">Procurement</th>
+					<th field="status_qa" width="100" sortable="true" align="center">Finance</th>
+					<th field="no_po" width="200" align="center">PO Number</th>
+					<th field="report_date" width="100" sortable="true" align="center">Approval</th>
 				</tr>
 			</thead>
+
+			<!-- START OF CODE BY RIZKY@220302 -->
+			<!-- PR data sample -->
+			<tbody>
+				<tr>
+					<td>0004</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>Umum</td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td></td>
+					<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="procurement_approval()"></a></td>
+				</tr>
+				<tr>
+					<td>0003</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>Material</td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td></td>
+					<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true"></a></td>
+				</tr>
+				<tr>
+					<td>0002</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>Umum</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
+					<td>002</td>
+					<td>dd/mm/yyyy</td>
+				</tr>
+				<tr>
+					<td>0001</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>Beni Nugraha</td>
+					<td>Umum</td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td><span style="padding-left:25px; color:#54CC1B; font-size: 25px">&#x2022;</span></td>
+					<td>002</td>
+					<td>dd/mm/yyyy</td>
+				</tr>
+			</tbody>
+			<!-- END OF CODE BY RIZKY@220302 -->
+
 		</table>
 		</div>
 		<!-- TABLE UTAMA EOF -->
@@ -410,28 +458,55 @@ function delete_rma(){
 		<div style="height:39%" style="border-style: solid;padding:10px">
 		<div id="p" class="easyui-panel" title="Detail Purchase Request" fit="true" style="width:auto;height:auto;padding:0px;">
 		<div style="float:left;" width="100%" style="border-right: 1px solid #95B8E7">
-			<table id="datagrid-rma-detail" class="easyui-datagrid" url="" style="width:1000px;" fit="false" toolbar="#" pagination="false" rownumbers="false" fitColumns="false" singleSelect="true" collapsible="true"
+
+			<!-- START OF CODE BY RIZKY@220225 -->
+			<!-- Create PR items preview -->
+			<table id="datagrid-rma-detail" class="easyui-datagrid" url="" style="width:1300px;" fit="false" toolbar="#" pagination="false" rownumbers="true" fitColumns="false" singleSelect="true" collapsible="true"
 			data-options="">
-			<thead>
-			<!-- <tr>
-				<th colspan="3">Logistic</th>
-				<th colspan="3">Quality</th>
-				<th colspan="4">Marketing</th>
-			</tr> -->
-			<tr>
+				<thead>
+					<tr>
+						<th field="tgl_prod_diterima" width="500" align="center">Barang</th>
+						<th field="jml_prod_kembali" width="100" align="center">Qty</th>
+						<th field="no_nc" width="150" align="center">Satuan</th>
+						<th field="jml_prod_ok" width="100" align="center">Due Date</th>
+						<th field="expert_review" width="150" align="center">Expert Review</th>
+						<th field="delete_action" width="50" align="center">#</th>
+					</tr>
+				</thead>
 				
-				<th field="rencana_tarik" width="65" align="left">No</th>
-				<th field="tgl_prod_diterima" width="450" align="left">Jenis Barang</th>
-				<th field="jml_prod_kembali" width="80" align="left">Qty</th>
-				
-				<th field="no_nc" width="120" align="center">Satuan</th>
-				<th field="jml_prod_ok" width="100" align="left">Due Date</th>
-				<th field="jml_prod_ng" width="60" align="left">Keterangan</th>
-				
-			</tr>
-		</thead>
+				<!-- START OF CODE BY RIZKY@220301 -->
+				<!-- Create dummy data -->
+				<tbody>
+					<tr>
+						<td>Coba lagi lah ya</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="request_expert()"></a></td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+					<tr>
+						<td>Contoh sudah di-approve</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><span style="left:0px; color:#54CC1B; font-size: 25px">&#x2022;</span>Andi Akbar</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+					<tr>
+						<td>Kalo ini belum di-approve</td>
+						<td>2</td>
+						<td>Pcs</td>
+						<td>01/03/2023</td>
+						<td><span style="left:0px; color:#DF0F0F; font-size: 25px">&#x2022;</span>IT</td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+					</tr>
+				</tbody>
+				<!-- END OF CODE BY RIZKY@220301 -->
 
 			</table>
+			<!-- END OF CODE BY RIZKY@220225 -->
+
 		</div>
 		<div style="height:98%" width="39%" align="right" style="border-left: 1px solid #95B8E7;background:#000">
 				<img id="img_rma" class='img' valign='top' ondblclick="jQuery('#dialog-open-img').dialog('open').dialog('setTitle','Images Detail');
@@ -731,16 +806,16 @@ function upload_rma(){
 }
 
 function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#upload-after').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = function (e) {
+			$('#upload-after').attr('src', e.target.result);
+		}
+		
+		reader.readAsDataURL(input.files[0]);
+	}
+}
     
 $("#imgInp").change(function(){
 	readURL(this);

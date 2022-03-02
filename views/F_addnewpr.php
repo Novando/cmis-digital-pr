@@ -39,7 +39,7 @@
 
 <!-- START OF CODE BY RIZKY@220225 -->
 <!-- Requestor identity form -->
-<div id="toolbar-requestor" style="padding:4px">
+<!-- <div id="toolbar-requestor" style="padding:4px">
 	Nama             : <input  Name="nama" id="nama" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
 	Departement      : <select name="department" id="department" class="easyui-combobox" style="width:150px;">
 											<option>IT</option>
@@ -53,18 +53,57 @@
 											<option>Material</option>
 											<option>Umum</option>
 										</select>
-</div>
+</div> -->
 
 <!-- Requestor item form -->
-<div id="toolbar-item" style="padding:4px">
+<table style="padding-bottom:20px">
+	<tr>
+		<td style="padding:5px 0">Nama :</td>
+		<td style="padding:5px 0" colspan="2"><input  Name="nama" id="nama" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+		<td style="padding:5px 0">Departemen :</td>
+		<td style="padding:5px 0" colspan="2">
+			<select name="department" id="department" class="easyui-combobox" style="width:150px;">
+				<option>IT</option>
+				<option>Development</option>
+				<option>Sales</option>
+				<option>Maintenance</option>
+				<option>Production</option>
+			</select> 
+		</td>
+		<td style="padding:5px 0">Divisi :</td>
+		<td style="padding:5px 0" colspan="2"><input  Name="divisi" id="divisi" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+		<td style="padding:5px 0">Jenis :</td>
+		<td style="padding:5px 0" colspan="2">
+			<select name="jenis" id="jenis" class="easyui-combobox" style="width:150px;">
+				<option>Material</option>
+				<option>Umum</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px 0">Barang / Jasa :</td>
+		<td style="padding:5px 0" colspan="5"><input  Name="item" id="item" size="50" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+		<td style="padding:5px 0">Qty :</td>
+		<td style="padding:5px 0" colspan="2"><input  Name="qty" id="qty" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+		<td style="padding:5px 0">Satuan :</td>
+		<td style="padding:5px 0" colspan="4"><input  Name="satuan" id="satuan" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+	</tr>
+	<tr>
+		<td style="padding:5px 0">Keterangan Link :</td>
+		<td style="padding:5px 0" colspan="5"><input  Name="link" id="link" size="50" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+		<td style="padding:5px 0">Due Date :</td>
+		<td style="padding:5px 0" colspan="5"><input  Name="dueDate" id="dueDate" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/></td>
+	</tr>
+</table>
+<!-- <div id="toolbar-item" style="padding:4px">
 	Barang / Jasa			: <input  Name="item" id="item" size="50" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
 	Qty								: <input  Name="qty" id="qty" size="20" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
 	Satuan						: <input  Name="satuan" id="satuan" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
-</div>
-<div id="toolbar-remark" style="padding:4px">
+</div> -->
+<!-- <div id="toolbar-remark" style="padding:4px">
 	Keterangan Link		: <input  Name="link" id="link" size="70" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
 	Due Date					: <input  Name="dueDate" id="dueDate" size="10" value="" type="text" onkeyup="ceksku();" class="c-textbox"/>
-</div>
+</div> -->
 <div id="toolbar-img" style="padding:4px">
 	<label style="padding-right:50px">
 		<span>Image 1 :</span>
@@ -81,8 +120,8 @@
 </div>
 <!-- END OF CODE BY RIZKY@220225 -->
 
-<div id="tb" style="height:auto; padding-left:1000px">
-	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
+<div id="tb" style="height:auto; padding: 10px 0 30px 1000px">
+	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="append()">Append</a>
 </div>
 
 <table id="datagrin-pr" class="easyui-datagrid" showFooter="true" rownumbers="true" fitColumns="true" singleSelect="true" collapsible="true">
@@ -106,7 +145,7 @@
 			<td>Pcs</td>
 			<td>Ini masih statik</td>
 			<td>21/11/2022</td>
-			<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()"></a></td>
+			<td><a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="removeit()"></a></td>
 		</tr>
 	</tbody>
 	
@@ -116,9 +155,9 @@
 
 <!-- START OF CODE BY RIZKY@220301 -->
 <!-- Add finish or cancel PR creation -->
-<div id="tb" style="height:auto; padding-left:1000px">
-	<a href="javascript:void(0)" id="submit-jawab-finish" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="finish()">Finish</a>
-	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">Cancel</a>
+<div id="tb" style="padding-top:20px; height:auto; padding-left:1000px">
+	<a href="javascript:void(0)" id="submit-jawab-finish" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="finish()">Finish</a>
+	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Cancel</a>
 </div>
 
 <div id="dialog-jawab-nc" class="easyui-dialog" style="width:400px; height:125px; padding: 4px 6px" modal="true" closed="true">

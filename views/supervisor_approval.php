@@ -56,10 +56,10 @@
 </div>
 
 <!-- Remove, save or cancel PR approval -->
-<div id="tb" style="height:auto; padding-left:1000px">
-  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="remove()">Delete</a>
-  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="save()">Save</a>
-	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="plain:true">Cancel</a>
+<div id="tb" style="height:aluto; padding-left:900px">
+  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" onclick="remove()">Delete</a>
+  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="save()">Save</a>
+	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">Cancel</a>
 </div>
 
 <script>

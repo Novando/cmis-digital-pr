@@ -76,8 +76,8 @@
 
 <!-- save or cancel expert approval -->
 <div id="tb" style="height:auto; padding-left:1000px">
-  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="save()">Save</a>
-	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="plain:true">Cancel</a>
+  <a href="javascript:void(0)" id="submit-jawab-save" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="save()">Save</a>
+	<a href="javascript:void(0)" id="submit-jawab-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">Cancel</a>
 </div>
 
 <script>

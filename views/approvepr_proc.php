@@ -422,7 +422,7 @@ setInterval("ceksession()", 1800000);
 					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
 					<td><span style="padding-left:25px; color:#DF0F0F; font-size: 25px">&#x2022;</span></td>
 					<td></td>
-					<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true"></a></td>
+					<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="procurement_approval()"></a></td>
 				</tr>
 				<tr>
 					<td>0002</td>
@@ -465,11 +465,11 @@ setInterval("ceksession()", 1800000);
 			data-options="">
 				<thead>
 					<tr>
-						<th field="tgl_prod_diterima" width="500" align="center">Barang</th>
+						<th field="tgl_prod_diterima" width="500" align="left">Barang</th>
 						<th field="jml_prod_kembali" width="100" align="center">Qty</th>
 						<th field="no_nc" width="150" align="center">Satuan</th>
 						<th field="jml_prod_ok" width="100" align="center">Due Date</th>
-						<th field="expert_review" width="150" align="center">Expert Review</th>
+						<th field="expert_review" width="150" align="left">Expert Review</th>
 						<th field="delete_action" width="50" align="center">#</th>
 					</tr>
 				</thead>
@@ -483,7 +483,7 @@ setInterval("ceksession()", 1800000);
 						<td>Pcs</td>
 						<td>01/03/2023</td>
 						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="request_expert()"></a></td>
-						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="removeItem()"></a></td>
 					</tr>
 					<tr>
 						<td>Contoh sudah di-approve</td>
@@ -491,7 +491,7 @@ setInterval("ceksession()", 1800000);
 						<td>Pcs</td>
 						<td>01/03/2023</td>
 						<td><span style="left:0px; color:#54CC1B; font-size: 25px">&#x2022;</span>Andi Akbar</td>
-						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="removeItem()"></a></td>
 					</tr>
 					<tr>
 						<td>Kalo ini belum di-approve</td>
@@ -499,7 +499,7 @@ setInterval("ceksession()", 1800000);
 						<td>Pcs</td>
 						<td>01/03/2023</td>
 						<td><span style="left:0px; color:#DF0F0F; font-size: 25px">&#x2022;</span>IT</td>
-						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeItem()"></a></td>
+						<td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="removeItem()"></a></td>
 					</tr>
 				</tbody>
 				<!-- END OF CODE BY RIZKY@220301 -->
